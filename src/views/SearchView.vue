@@ -2,7 +2,7 @@
   <div>
     <v-app id="app">
       <v-container>
-        <v-row>d
+        <v-row>
           <v-col v-for="(user, index) in users" :key="index" cols="6">
             <v-card hover>
               <v-list-item three-line>
@@ -51,8 +51,8 @@ export default {
       this.axios
         .get("http://jsonplaceholder.typicode.com/users/" + i)
         .then((response) => {
-          this.users[i - 1] = response.data;
-          console.log(this.users[i - 1]);
+          this.users[i] = response.data;
+          console.log(this.users[i]);
         });
     },
   },
