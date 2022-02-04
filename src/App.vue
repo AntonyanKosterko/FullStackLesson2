@@ -52,7 +52,7 @@
     <v-main app>
       <v-content class="px-12 py-3">
         <v-container fluid>
-          <router-view v-on:login="updateUser"/>
+          <router-view v-on:login="updateUser" :myId="myId"/>
         </v-container>
       </v-content>
     </v-main>
@@ -81,3 +81,27 @@
   }
 }
 </style>
+
+<script>
+//import { defineComponent } from '@vue/composition-api'
+//v-for="(user, index) in users" :key="index"
+
+export default {
+  data() {
+    return {
+      myId: 0,
+    };
+  },
+
+  methods: {
+    updateUser(userData){
+      console.log(userData);
+    },
+  },
+
+  mounted() {
+    this.getListUsers();
+  },
+};
+</script>
+

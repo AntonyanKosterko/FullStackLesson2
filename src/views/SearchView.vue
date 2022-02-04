@@ -60,6 +60,10 @@ export default {
   mounted() {
     this.getListUsers();
   },
+
+  props:{
+    myId: String,
+  }
 };
 </script>
 

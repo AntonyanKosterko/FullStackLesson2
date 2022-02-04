@@ -24,6 +24,7 @@
 export default {
   data() {
     return {
+      myid: 0,
       users: {},
     };
   },
@@ -37,8 +38,8 @@ export default {
           let found = false;
           for(let index in users){
               if(this.login == users[index].login && this.password == users[index].password){
-                  this.$emit('login', index);
-                  this.$router.push('/profile/' + this.myId);
+                  this.$emit('login', users[index]);
+                  this.$router.push('/profile/' + this.myid);
                   found = true;
                   break;
               }
@@ -53,5 +54,9 @@ export default {
   mounted() {
     this.getListUsers();
   },
+
+  props:{
+    myId: String,
+  }
 };
 </script>

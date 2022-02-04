@@ -106,6 +106,10 @@ export default {
       this.getData();
     },
   },
+
+  props:{
+    myId: String,
+  }
 };
 </script>
 
