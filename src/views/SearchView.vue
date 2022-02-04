@@ -51,7 +51,7 @@ export default {
       this.axios
         .get("http://jsonplaceholder.typicode.com/users/" + i)
         .then((response) => {
-          this.users[i] = response.data;
+          this.$set(this.users, i, response.data);
           console.log(this.users[i]);
         });
     },
