@@ -1,58 +1,21 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer
-      app
-      color="green"
-      dark
-      expand-on-hover
-      hide-overlay
-      permanent
-      right
-    >
-      <v-list nav dense>
-
-        <v-list-item link>
-          <v-list-item-avatar>
-            <v-img
-              src="https://randomuser.me/api/portraits/women/85.jpg"
-            ></v-img>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6 font-weight-black">
-              Sandra Adams
-            </v-list-item-title>
-            <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-
-      <v-divider class="my-3"></v-divider>
-
-      <v-list shaped nav dense>
-        <v-list-item link to="/">
-          <v-list-item-icon>
-            <v-icon>mdi-home-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Главная</v-list-item-title>
-        </v-list-item>
-        <v-list-item link to="/profile">
-          <v-list-item-icon>
-            <v-icon>mdi-account-multiple</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Мой профиль</v-list-item-title>
-        </v-list-item>
-        <v-list-item link to="/search">
-          <v-list-item-icon>
-            <v-icon>mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Найти друзей</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <NavDrawer
+      :name="userData.name"
+      :email="userData.email"
+      :imgUrl="userData.imgUrl"
+    ></NavDrawer>
     <v-main app>
+      <v-header>
+        <v-row no-gutters  class="green lighten-3">
+          <v-col v-for="n in 1" :key="n" cols="12" sm="4">
+            <h1>ReadMe</h1>
+          </v-col>
+        </v-row>
+      </v-header>
       <v-content class="px-12 py-3">
         <v-container fluid>
-          <router-view v-on:login="updateUser" :myId="myId"/>
+          <router-view v-on:login="updateUser" :myId="myId" />
         </v-container>
       </v-content>
     </v-main>
@@ -83,24 +46,35 @@
 </style>
 
 <script>
-//import { defineComponent } from '@vue/composition-api'
+import NavDrawer from "./components/NavDrawer.vue";
 //v-for="(user, index) in users" :key="index"
 
 export default {
+  components: {
+    NavDrawer,
+  },
+
   data() {
     return {
       myId: 0,
+      userData: {
+        name: "Anonimus",
+        email: "Anon@anonym.com",
+        imgUrl: "https://socpartnerstvo.org/img/avatar_male.png",
+      },
     };
   },
 
   methods: {
-    updateUser(userData){
-      console.log(userData);
+    updateUser(_userData) {
+      this.userData = _userData;
+      this.userData.imgUrl = "https://socpartnerstvo.org/img/avatar_male.png";
+      console.log(_userData);
     },
   },
 
   mounted() {
-    this.getListUsers();
+    //this.getUserData();
   },
 };
 </script>
